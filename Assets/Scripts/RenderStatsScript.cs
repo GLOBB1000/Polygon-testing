@@ -8,6 +8,9 @@ public class RenderStatsScript : MonoBehaviour
     ProfilerRecorder setPassCallsRecorder;
     ProfilerRecorder drawCallsRecorder;
     ProfilerRecorder verticesRecorder;
+    ProfilerRecorder staticBatchingDrawCalls;
+    ProfilerRecorder dynamicBatchingDrawCalls;
+    ProfilerRecorder staticBatchesCount;
 
     private float fps;
 
@@ -16,6 +19,9 @@ public class RenderStatsScript : MonoBehaviour
         setPassCallsRecorder = ProfilerRecorder.StartNew(ProfilerCategory.Render, "SetPass Calls Count");
         drawCallsRecorder = ProfilerRecorder.StartNew(ProfilerCategory.Render, "Draw Calls Count");
         verticesRecorder = ProfilerRecorder.StartNew(ProfilerCategory.Render, "Vertices Count");
+        staticBatchingDrawCalls = ProfilerRecorder.StartNew(ProfilerCategory.Render, "Static Batched Draw Calls Count");
+        dynamicBatchingDrawCalls = ProfilerRecorder.StartNew(ProfilerCategory.Render, "Dynamic Batched Draw Calls Count");
+        staticBatchesCount = ProfilerRecorder.StartNew(ProfilerCategory.Render, "Total Batches Count");
     }
 
     void OnDisable()
@@ -23,6 +29,9 @@ public class RenderStatsScript : MonoBehaviour
         setPassCallsRecorder.Dispose();
         drawCallsRecorder.Dispose();
         verticesRecorder.Dispose();
+        staticBatchingDrawCalls.Dispose();
+        dynamicBatchingDrawCalls.Dispose();
+        staticBatchesCount.Dispose();
     }
 
     void Update()
@@ -34,6 +43,12 @@ public class RenderStatsScript : MonoBehaviour
             sb.AppendLine($"Draw Calls: {drawCallsRecorder.LastValue}");
         if (verticesRecorder.Valid)
             sb.AppendLine($"Vertices: {verticesRecorder.LastValue}");
+        if (staticBatchingDrawCalls.Valid)
+            sb.AppendLine($"Static draw calls:  {staticBatchingDrawCalls.LastValue}");
+        if (dynamicBatchingDrawCalls.Valid)
+            sb.AppendLine($"Dynamic draw calls:  {dynamicBatchingDrawCalls.LastValue}");
+        if (staticBatchesCount.Valid)
+            sb.AppendLine($"Batches count:  {staticBatchesCount.LastValue}");
 
         fps = 1.0f / Time.deltaTime;
         sb.AppendLine($"FPS: {fps}");
@@ -43,6 +58,6 @@ public class RenderStatsScript : MonoBehaviour
 
     void OnGUI()
     {
-        GUI.TextArea(new Rect(10, 30, 250, 70), statsText);
+        GUI.TextArea(new Rect(10, 30, 250, 120), statsText);
     }
 }

@@ -22,9 +22,17 @@ public class MainCore : MonoBehaviour
     [SerializeField]
     private Dropdown dropdown;
 
+    [SerializeField]
+    private Material defaultMat;
+
+    [SerializeField]
+    private Shader shader;
+
     // Start is called before the first frame update
     void Start()
     {
+        defaultMat = new Material(shader);
+
         createButton.onClick.AddListener(Create);
 
         List<string> modelNames = new List<string>();
@@ -57,9 +65,15 @@ public class MainCore : MonoBehaviour
 
             var model = Instantiate(modelPrefab);
 
+
+
             var meshRend = model.GetComponentInChildren<MeshRenderer>();
+            //meshRend.material = defaultMat;
+
             var currentInfo = materialsInfo.Infos[dropdown.value];
-            meshRend.material = new Material(currentInfo.Shader);
+            Material mat = new Material(currentInfo.Shader);
+
+            meshRend.material = mat;
 
             if (currentInfo.Texture != null)
                 meshRend.material.mainTexture = currentInfo.Texture;
