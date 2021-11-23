@@ -58,6 +58,7 @@ public class RenderStatsScript : MonoBehaviour
 
     void OnGUI()
     {
-        GUI.TextArea(new Rect(10, 30, 250, 120), statsText);
+        GUI.TextArea(new Rect(10, 30, 450, 240), statsText);
+        GUI.skin.textArea.fontSize = 35;
     }
 }

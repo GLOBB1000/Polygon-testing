@@ -31,6 +31,8 @@ public class MainCore : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        countOfModels.text = "10";
+
         defaultMat = new Material(shader);
 
         createButton.onClick.AddListener(Create);
