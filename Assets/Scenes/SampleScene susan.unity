@@ -839,6 +839,7 @@ GameObject:
   - component: {fileID: 804498843}
   - component: {fileID: 804498844}
   - component: {fileID: 804498845}
+  - component: {fileID: 804498846}
   m_Layer: 0
   m_Name: Core
   m_TagString: Untagged
@@ -879,6 +880,7 @@ MonoBehaviour:
   dropdown: {fileID: 1587334481}
   defaultMat: {fileID: 2100000, guid: ec1dc6f8a49e4304b9aa86f94d386488, type: 2}
   shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  materialsPool: {fileID: 804498846}
 --- !u!114 &804498844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -903,6 +905,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01b861168c240204db01f05b450dfbcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &804498846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 804498841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecc7bccf1b833774387c586d1c56f4cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledMaterials: []
+  countOfMaterials: 0
+  materialsInfo: {fileID: 11400000, guid: 1f82de9b913464a46b23b3a1e9021383, type: 2}
 --- !u!1 &867232125
 GameObject:
   m_ObjectHideFlags: 0

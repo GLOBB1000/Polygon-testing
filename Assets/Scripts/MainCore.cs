@@ -28,6 +28,9 @@ public class MainCore : MonoBehaviour
     [SerializeField]
     private Shader shader;
 
+    [SerializeField]
+    private MaterialsPool materialsPool;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,6 +59,10 @@ public class MainCore : MonoBehaviour
     {
         List<Susan> susans = new List<Susan>(FindObjectsOfType<Susan>());
 
+        materialsPool.SetPoolObjects(dropdown, countOfModels);
+
+        int indexOfPool = 0;
+
         foreach (var item in susans)
         {
             Destroy(item.gameObject);
@@ -67,20 +74,27 @@ public class MainCore : MonoBehaviour
 
             var model = Instantiate(modelPrefab);
 
+            MeshRenderer meshRend = model.GetComponentInChildren<MeshRenderer>();
 
-
-            var meshRend = model.GetComponentInChildren<MeshRenderer>();
             //meshRend.material = defaultMat;
 
-            var currentInfo = materialsInfo.Infos[dropdown.value];
-            Material mat = new Material(currentInfo.Shader);
+            Debug.Log($"Index of pool {Mathf.RoundToInt(y / 10f)}\n Size of pool {materialsPool.pooledMaterials.Count}");
 
-            meshRend.material = mat;
+            meshRend.material = materialsPool.pooledMaterials[Mathf.RoundToInt(y / 10f)];
 
-            if (currentInfo.Texture != null)
-                meshRend.material.mainTexture = currentInfo.Texture;
 
-            meshRend.material.color = currentInfo.Color;
+
+            //meshRend.material = defaultMat;
+
+            //var currentInfo = materialsInfo.Infos[dropdown.value];
+            //Material mat = new Material(currentInfo.Shader);
+
+            //meshRend.material = mat;
+
+            //if (currentInfo.Texture != null)
+            //    meshRend.material.mainTexture = currentInfo.Texture;
+
+            //meshRend.material.color = currentInfo.Color;
 
         }
     }

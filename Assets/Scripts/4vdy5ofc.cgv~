@@ -1,0 +1,24 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class MaterialsPool : MonoBehaviour
+{
+    public static MaterialsPool PoolInstance;
+
+    private List<Material> pooledMaterials;
+
+    [SerializeField]
+    private int countOfMaterials;
+
+    private void Awake()
+    {
+        if (PoolInstance == null)
+            PoolInstance = this;
+    }
+
+    private void Start()
+    {
+        pooledMaterials = new List<Material>();
+    }
+}

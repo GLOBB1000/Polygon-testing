@@ -1,0 +1,35 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class MaterialsPool : MonoBehaviour
+{
+    public static MaterialsPool PoolInstance;
+
+    public List<Material> pooledMaterials;
+
+    public int countOfMaterials;
+
+    public MaterialsInfo materialsInfo;
+
+    public Dropdown dropdown;
+
+    private void Awake()
+    {
+        if (PoolInstance == null)
+            PoolInstance = this;
+    }
+
+    public void SetPoolObjects()
+    {
+        pooledMaterials = new List<Material>();
+        Material tmpMat;
+        for (int i = 0; i < countOfMaterials; i++)
+        {
+            tmpMat = new Material()
+        }
+    }
+
+
+}

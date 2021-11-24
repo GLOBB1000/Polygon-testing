@@ -18,7 +18,7 @@ public class RenderStatsScript : MonoBehaviour
     {
         setPassCallsRecorder = ProfilerRecorder.StartNew(ProfilerCategory.Render, "SetPass Calls Count");
         drawCallsRecorder = ProfilerRecorder.StartNew(ProfilerCategory.Render, "Draw Calls Count");
-        verticesRecorder = ProfilerRecorder.StartNew(ProfilerCategory.Render, "Vertices Count");
+        verticesRecorder = ProfilerRecorder.StartNew(ProfilerCategory.Render, "Triangles Count");
         staticBatchingDrawCalls = ProfilerRecorder.StartNew(ProfilerCategory.Render, "Static Batched Draw Calls Count");
         dynamicBatchingDrawCalls = ProfilerRecorder.StartNew(ProfilerCategory.Render, "Dynamic Batched Draw Calls Count");
         staticBatchesCount = ProfilerRecorder.StartNew(ProfilerCategory.Render, "Total Batches Count");
@@ -37,12 +37,10 @@ public class RenderStatsScript : MonoBehaviour
     void Update()
     {
         var sb = new StringBuilder(500);
-        if (setPassCallsRecorder.Valid)
-            sb.AppendLine($"SetPass Calls: {setPassCallsRecorder.LastValue}");
         if (drawCallsRecorder.Valid)
             sb.AppendLine($"Draw Calls: {drawCallsRecorder.LastValue}");
         if (verticesRecorder.Valid)
-            sb.AppendLine($"Vertices: {verticesRecorder.LastValue}");
+            sb.AppendLine($"Triangles: {verticesRecorder.LastValue}");
         if (staticBatchingDrawCalls.Valid)
             sb.AppendLine($"Static draw calls:  {staticBatchingDrawCalls.LastValue}");
         if (dynamicBatchingDrawCalls.Valid)
