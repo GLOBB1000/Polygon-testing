@@ -12,6 +12,8 @@ public class RenderStatsScript : MonoBehaviour
     ProfilerRecorder dynamicBatchingDrawCalls;
     ProfilerRecorder staticBatchesCount;
 
+    ProfilerRecorder test;
+
     private float fps;
 
     void OnEnable()
@@ -56,7 +58,7 @@ public class RenderStatsScript : MonoBehaviour
 
     void OnGUI()
     {
-        GUI.TextArea(new Rect(10, 30, 450, 240), statsText);
+        GUI.TextArea(new Rect(1450, 500, 450, 240), statsText);
         GUI.skin.textArea.fontSize = 35;
     }
 }
